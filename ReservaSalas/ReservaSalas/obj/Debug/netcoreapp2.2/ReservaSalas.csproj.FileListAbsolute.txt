@@ -1,0 +1,13 @@
+D:\ReservaSalas\ReservaSalas\ReservaSalas\bin\Debug\netcoreapp2.2\ReservaSalas.deps.json
+D:\ReservaSalas\ReservaSalas\ReservaSalas\bin\Debug\netcoreapp2.2\ReservaSalas.runtimeconfig.json
+D:\ReservaSalas\ReservaSalas\ReservaSalas\bin\Debug\netcoreapp2.2\ReservaSalas.runtimeconfig.dev.json
+D:\ReservaSalas\ReservaSalas\ReservaSalas\bin\Debug\netcoreapp2.2\ReservaSalas.dll
+D:\ReservaSalas\ReservaSalas\ReservaSalas\bin\Debug\netcoreapp2.2\ReservaSalas.pdb
+D:\ReservaSalas\ReservaSalas\ReservaSalas\obj\Debug\netcoreapp2.2\ReservaSalas.csproj.CoreCompileInputs.cache
+D:\ReservaSalas\ReservaSalas\ReservaSalas\obj\Debug\netcoreapp2.2\ReservaSalas.RazorAssemblyInfo.cache
+D:\ReservaSalas\ReservaSalas\ReservaSalas\obj\Debug\netcoreapp2.2\ReservaSalas.RazorAssemblyInfo.cs
+D:\ReservaSalas\ReservaSalas\ReservaSalas\obj\Debug\netcoreapp2.2\ReservaSalas.AssemblyInfoInputs.cache
+D:\ReservaSalas\ReservaSalas\ReservaSalas\obj\Debug\netcoreapp2.2\ReservaSalas.AssemblyInfo.cs
+D:\ReservaSalas\ReservaSalas\ReservaSalas\obj\Debug\netcoreapp2.2\ReservaSalas.RazorTargetAssemblyInfo.cache
+D:\ReservaSalas\ReservaSalas\ReservaSalas\obj\Debug\netcoreapp2.2\ReservaSalas.dll
+D:\ReservaSalas\ReservaSalas\ReservaSalas\obj\Debug\netcoreapp2.2\ReservaSalas.pdb
