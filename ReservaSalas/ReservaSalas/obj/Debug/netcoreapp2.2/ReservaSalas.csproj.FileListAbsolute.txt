@@ -11,3 +11,4 @@ D:\ReservaSalas\ReservaSalas\ReservaSalas\obj\Debug\netcoreapp2.2\ReservaSalas.A
 D:\ReservaSalas\ReservaSalas\ReservaSalas\obj\Debug\netcoreapp2.2\ReservaSalas.RazorTargetAssemblyInfo.cache
 D:\ReservaSalas\ReservaSalas\ReservaSalas\obj\Debug\netcoreapp2.2\ReservaSalas.dll
 D:\ReservaSalas\ReservaSalas\ReservaSalas\obj\Debug\netcoreapp2.2\ReservaSalas.pdb
+D:\ReservaSalas\ReservaSalas\ReservaSalas\obj\Debug\netcoreapp2.2\ReservaSalas.csprojAssemblyReference.cache

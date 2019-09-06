@@ -1,103 +1,69 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using ReservaSalas.DTO;
 using ReservaSalas.Models;
+using ReservaSalas.Repository.Interface;
+using ReservaSalas.Services.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ReservaSalas.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Route("api/salas")]
     public class SalasController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly ISalasRepository _iSalasRepository;
+        private readonly IMapper _iMapper;
+        private readonly ISalaService _salaService;
 
-        public SalasController(AppDbContext context)
+        public SalasController(ISalasRepository salasRepository,
+                               IMapper iMapper,
+                               ISalaService salaService)
         {
-            _context = context;
+            _iSalasRepository = salasRepository;
+            _iMapper = iMapper;
+            _salaService = salaService;
         }
 
-        // GET: api/Salas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Sala>>> Getsalas()
+        public async Task<ActionResult<IEnumerable<SalaDTO>>> ObterTodos()
         {
-            return await _context.salas.ToListAsync();
+            var sala = _iMapper.Map<IEnumerable<SalaDTO>>(await _iSalasRepository.ObterTodos());
+            return Ok(sala);
         }
 
-        // GET: api/Salas/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Sala>> GetSala(int id)
+        [HttpGet("{id:guid}")]
+        public async Task<ActionResult<SalaDTO>> ObterPorID(Guid id)
         {
-            var sala = await _context.salas.FindAsync(id);
-
-            if (sala == null)
-            {
-                return NotFound();
-            }
+            var sala = _iMapper.Map<SalaDTO>(await _iSalasRepository.ObterPorId(id));
+            if (sala == null) return NotFound();
 
             return sala;
         }
 
-        // PUT: api/Salas/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutSala(int id, Sala sala)
-        {
-            if (id != sala.ID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(sala).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SalaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Salas
         [HttpPost]
-        public async Task<ActionResult<Sala>> PostSala(Sala sala)
+        public async Task<ActionResult<SalaDTO>> Adicionar([FromBody] SalaDTO salaDTO)
         {
-            _context.salas.Add(sala);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSala", new { id = sala.ID }, sala);
+            if (!ModelState.IsValid) return BadRequest();
+
+            var sala = _iMapper.Map<Sala>(salaDTO);
+
+            await _salaService.Adicionar(sala);
+            return Ok(sala);
         }
 
-        // DELETE: api/Salas/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Sala>> DeleteSala(int id)
+        [HttpPut("{id:guid}")]
+        public async Task<ActionResult<SalaDTO>> Atualizar([FromBody] SalaDTO salaDTO)
         {
-            var sala = await _context.salas.FindAsync(id);
-            if (sala == null)
-            {
-                return NotFound();
-            }
 
-            _context.salas.Remove(sala);
-            await _context.SaveChangesAsync();
+            if (!ModelState.IsValid) return BadRequest();
 
-            return sala;
-        }
+            var sala = _iMapper.Map<Sala>(salaDTO);
 
-        private bool SalaExists(int id)
-        {
-            return _context.salas.Any(e => e.ID == id);
+            await _salaService.Adicionar(sala);
+            return Ok(sala);
         }
     }
 }

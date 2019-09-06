@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ReservaSalas.Configuration;
 using ReservaSalas.Models;
 
 namespace ReservaSalas
@@ -21,13 +23,16 @@ namespace ReservaSalas
         public void ConfigureServices(IServiceCollection services)
         {
 
+            //API para Mapeamento de Entidade->DTO /
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddDbContext<AppDbContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-               .ConfigureApiBehaviorOptions(o => { o.SuppressModelStateInvalidFilter = true; });
+            //Resolve as Dependencias entre Interface e implementação
+            services.ResolveDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
